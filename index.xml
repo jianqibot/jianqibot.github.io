@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Jianqi&#39;s Blog</title>
-    <link>http://example.org/</link>
+    <link>http://jianqibot.github.io/</link>
     <description>Recent content on Jianqi&#39;s Blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-Hans</language>
-    <lastBuildDate>Sun, 18 Jul 2021 12:30:25 +1000</lastBuildDate><atom:link href="http://example.org/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 18 Jul 2021 12:30:25 +1000</lastBuildDate><atom:link href="http://jianqibot.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>PackageManagingInJava</title>
-      <link>http://example.org/posts/packagemanaginginjava/</link>
+      <link>http://jianqibot.github.io/posts/packagemanaginginjava/</link>
       <pubDate>Sun, 18 Jul 2021 12:30:25 +1000</pubDate>
       
-      <guid>http://example.org/posts/packagemanaginginjava/</guid>
+      <guid>http://jianqibot.github.io/posts/packagemanaginginjava/</guid>
       <description>Table of Contents  1. JVM的工作流程很简单: 2. JVM如何找到需要加载的类 3. 传递性依赖 4. classpath hell 5. 当引用第三方包的时候，需要告诉JVM去哪里找，这时候需要包管理。 6. 在没有Maven的时代，手动写shell去做这些，酸爽！ 7. 启蒙时代: 8. Maven时代  - Maven对包建立了一层抽象，每个包有groupID, artifactID, version, 通过这三个标识找包 - 跨时代 - 依赖冲突可能会产生的错误信息  - Maven也是自动化构建工具     9. tips  1. JVM的工作流程很简单:  执行一个类的字节码 如果碰到了新的类，加载它 循环以上过程  2. JVM如何找到需要加载的类  从 -classpath里面找，classpath包含了很多的文件，用&#39;:&amp;lsquo;分隔，JVM一个一个的找  3. 传递性依赖  你依赖的类还依赖了别的类，别的类又依赖了新的别的类  4. classpath hell  全限定类名是类的唯一标识 当classpath里面有同名的类时，谁在classpath靠前的位置谁被加载 例子: classpath里面有某个包的不同版本，可能会加载错误的类  5. 当引用第三方包的时候，需要告诉JVM去哪里找，这时候需要包管理。 包管理的本质就是告诉JVM去哪里找到所需的第三方类库以及解决类名冲突问题</description>
     </item>
     
