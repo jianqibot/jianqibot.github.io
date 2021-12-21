@@ -2,18 +2,18 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Posts - Jianqi&#39;s blog</title>
+  <title>Blog2 - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="Posts">
+  <meta name="description" content="#345 ##123">
   
-  <meta itemprop="name" content="Posts - Jianqi&#39;s blog">
-  <meta itemprop="description" content="Posts">
+  <meta itemprop="name" content="Blog2 - Jianqi&#39;s blog">
+  <meta itemprop="description" content="#345 ##123">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
   <meta name="twitter:description" content="Welcome to my blog">
-  <link rel="alternate" href="https://jianqibot.github.io/feed.xml" title="Jianqi&#39;s blog" type="application/rss+xml"/>
+  
   <link rel="shortcut icon" href="https://jianqibot.github.io/img/favicon.ico"/>
   <link rel="apple-touch-icon" href="https://jianqibot.github.io/apple-touch-icon.png" />
   <link rel="apple-touch-icon-precomposed" href="https://jianqibot.github.io/apple-touch-icon.png" />
@@ -60,21 +60,80 @@
 
   </header>
   <div id="container">
-    <div id="main">
-      
-      <h2 id="2021-07">2021-07</h2>
-      
-      <section class="post" itemscope itemprop="blogPost">
-    <a href="https://jianqibot.github.io/posts/packagemanaginginjava/" title="PackageManagingInJava" itemprop="url">
-    <h1 itemprop="name">PackageManagingInJava</h1>
-    <p itemprop="description">Table of Contents 1. JVM的工作流程很简单: 2. JVM如何找到需要加载的类 3. 传递性依赖 4. classpath hell 5. 当引用第三方包的时候，需要告诉JVM去哪里找，这时候需要包管</p>
-    <time datetime="2021-07-18 12:30:25 &#43;1000 AEST" itemprop="datePublished">18187年718月187日</time>
-  </a>
-</section>
+    <div id="main" class="post" itemscope itemprop="blogPost">
+	<article itemprop="articleBody">
+    <header class="article-info clearfix">
+  <h1 itemprop="name">
+      <a href="https://jianqibot.github.io/post/blog2/" title="Blog2" itemprop="url">Blog2</a>
+  </h1>
+  <p class="article-author">By
+    
+      <a href="https://jianqibot.github.io/" title="">you</a>
+    
+  </p>
+  <p class="article-time">
+    <time datetime="2021-12-21 21:31:42 &#43;1100 AEDT" itemprop="datePublished">212112年1221月2112日</time>
+  </p>
+</header>
 
-      
-      
+	<div class="article-content">
+    
+    <p>#345
+##123</p>
+
+    
+	</div>
+  <footer class="article-footer clearfix">
+  
+
+
+
+  <div class="article-share" id="share">
+    <div data-url="https://jianqibot.github.io/post/blog2/" data-title="Blog2" data-tsina="" class="share clearfix">
     </div>
+  </div>
+</footer>
+
+	</article>
+  
+
+
+<section class="comment">
+<div id="disqus_thread"></div>
+</section>
+<script>
+  <!-- detect whether Disuqs can load -->
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', '//disqus.com/next/config.json?' + new Date().getTime(), true);
+  xhr.timeout = 3000; 
+
+  xhr.onload = function() { 
+
+
+var disqus_config = function () {
+this.page.url = "https://jianqibot.github.io/post/blog2/";
+this.page.identifier = "https://jianqibot.github.io/post/blog2/";
+};
+(function() { 
+var d = document, s = d.createElement('script');
+
+s.src = '//jianqi.disqus.com/embed.js';
+
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+}
+  xhr.ontimeout = function() {
+  <!-- cannot load Disqus, skip it. -->
+  return;
+}
+xhr.send(null);
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+
+
+</div>
+
     <div class="openaside"><a class="navbutton" href="#" title="显示侧边栏"></a></div>
 <div id="asidepart">
 <div class="closeaside"><a class="closebutton" href="#" title="隐藏侧边栏"></a></div>
@@ -107,10 +166,6 @@
 
 
   
-<div class="rsspart">
-  <a rel="nofollow" href="https://jianqibot.github.io/feed.xml" type="application/rss+xml" target="_blank">RSS 订阅</a>
-</div>
-
 
 </aside>
 </div>
@@ -196,6 +251,38 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
+  var ai = $('.article-content>iframe'),
+      ae = $('.article-content>embed'),
+      t  = $('#toc'),
+      h  = $('article h2')
+      ah = $('article h2'),
+      ta = $('#toc.toc-aside'),
+      o  = $('.openaside'),
+      c  = $('.closeaside');
+  if(ai.length>0){
+    ai.wrap('<div class="video-container" />');
+  };
+  if(ae.length>0){
+   ae.wrap('<div class="video-container" />');
+  };
+  if(ah.length==0){
+    t.css('display','none');
+  }else{
+    c.click(function(){
+      ta.css('display', 'block').addClass('fadeIn');
+    });
+    o.click(function(){
+      ta.css('display', 'none');
+    });
+    $(window).scroll(function(){
+      ta.css("top",Math.max(140,320-$(this).scrollTop()));
+    });
+  };
+});
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -222,6 +309,27 @@ $(document).ready(function(){
 });
 </script>
 
+
+<link rel="stylesheet" href="https://jianqibot.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="https://jianqibot.github.io/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+});
+</script>
 
 
 <script>
