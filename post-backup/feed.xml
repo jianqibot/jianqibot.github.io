@@ -1,46 +1,37 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Jianqi&#39;s blog</title>
-    <link>https://jianqibot.github.io/feed.xml</link>
-    <description>Recent content on Jianqi&#39;s blog</description>
+    <title>Post-backups on Jianqi&#39;s blog</title>
+    <link>https://jianqibot.github.io/post-backup/</link>
+    <description>Recent content in Post-backups on Jianqi&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 07 Jan 2022 23:16:19 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Jan 2022 23:16:19 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/post-backup/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java Package Manager</title>
-      <link>https://jianqibot.github.io/post/java-package-manager/</link>
+      <link>https://jianqibot.github.io/post-backup/java-package-manager/</link>
       <pubDate>Fri, 07 Jan 2022 23:16:19 +1100</pubDate>
       
-      <guid>https://jianqibot.github.io/post/java-package-manager/</guid>
+      <guid>https://jianqibot.github.io/post-backup/java-package-manager/</guid>
       <description>Java中的传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，classp</description>
     </item>
     
     <item>
       <title>How to Use Docker Compose For Springboot App</title>
-      <link>https://jianqibot.github.io/post/docker-compose/</link>
+      <link>https://jianqibot.github.io/post-backup/docker-compose/</link>
       <pubDate>Fri, 07 Jan 2022 23:07:56 +1100</pubDate>
       
-      <guid>https://jianqibot.github.io/post/docker-compose/</guid>
+      <guid>https://jianqibot.github.io/post-backup/docker-compose/</guid>
       <description>Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.</description>
     </item>
     
     <item>
       <title>Java Collections</title>
-      <link>https://jianqibot.github.io/post/java-collections/</link>
+      <link>https://jianqibot.github.io/post-backup/java-collections/</link>
       <pubDate>Fri, 07 Jan 2022 22:10:34 +1100</pubDate>
       
-      <guid>https://jianqibot.github.io/post/java-collections/</guid>
+      <guid>https://jianqibot.github.io/post-backup/java-collections/</guid>
       <description>集合类的特点 集合只用于存储对象，集合长度是可变的，集合可以存储不同类型的对象并且高效的操作数据。 推荐看一下collection继承体系图 抽象</description>
-    </item>
-    
-    <item>
-      <title>PackageManagingInJava</title>
-      <link>https://jianqibot.github.io/posts/packagemanaginginjava/</link>
-      <pubDate>Sun, 18 Jul 2021 12:30:25 +1000</pubDate>
-      
-      <guid>https://jianqibot.github.io/posts/packagemanaginginjava/</guid>
-      <description>Table of Contents 1. JVM的工作流程很简单: 2. JVM如何找到需要加载的类 3. 传递性依赖 4. classpath hell 5. 当引用第三方包的时候，需要告诉JVM去哪里找，这时候需要包管</description>
     </item>
     
   </channel>

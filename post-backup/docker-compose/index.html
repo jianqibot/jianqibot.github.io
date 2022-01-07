@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Java Package Manager - Jianqi&#39;s blog</title>
+  <title>How to Use Docker Compose For Springboot App - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="Java中的传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，classp">
+  <meta name="description" content="Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.">
   
-  <meta itemprop="name" content="Java Package Manager - Jianqi&#39;s blog">
-  <meta itemprop="description" content="Java中的传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，classp">
+  <meta itemprop="name" content="How to Use Docker Compose For Springboot App - Jianqi&#39;s blog">
+  <meta itemprop="description" content="Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/java-package-manager/" title="Java Package Manager" itemprop="url">Java Package Manager</a>
+      <a href="https://jianqibot.github.io/post-backup/docker-compose/" title="How to Use Docker Compose For Springboot App" itemprop="url">How to Use Docker Compose For Springboot App</a>
   </h1>
   <p class="article-author">By
     
@@ -72,75 +72,87 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2022-01-07 23:16:19 &#43;1100 AEDT" itemprop="datePublished">7071年17月71日</time>
+    <time datetime="2022-01-07 23:07:56 &#43;1100 AEDT" itemprop="datePublished">7071年17月71日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h2 id="java中的传递性依赖">Java中的传递性依赖</h2>
-<p>我们先来看一下JVM的基本工作流程</p>
-<ol>
-<li>执行一个类的字节码</li>
-<li>如果碰到了新的类，加载它</li>
-<li>从 -classpath里面找，classpath包含了很多的文件，用':‘分隔，JVM一个一个的找</li>
-<li>循环以上过程</li>
-</ol>
-<p>这样会产生一个问题，你依赖的类还依赖了别的类，别的类又依赖了新的别的类，这样一直搜索 并加载下去，这就叫做传递性依赖。</p>
-<h2 id="classpath-hell">Classpath Hell</h2>
-<p>我们知道对于JVM而言，全限定类名(fully qualified class name)是所有类的唯一标识， 如果classpath里面出现了同名的类，
-在classpath的位置靠前的那一个会被加载。设想一下 如果classpath中引入了某个包的不同版本，这有可能导致错误的版本里面
-的类被加载。所以 我们需要进行包管理，包管理的本质就是告诉JVM去哪里找到所需的第三方类库以及解决类名 冲突问题。</p>
-<h2 id="包管理">包管理</h2>
-<h3 id="启蒙时代-aache-ant">启蒙时代 Aache Ant</h3>
-<ul>
-<li>手动下载Jar包，放在一个目录中</li>
-<li>写XML配置，指定编译的源代码目录，依赖的jar包，输出目录等</li>
-<li>缺点很明显: 每个人都要自己造一套轮子，第三方库需要手动下载，没有解决classpath hell问题</li>
-</ul>
-<h3 id="maven时代">Maven时代</h3>
-<h5 id="maven简介">Maven简介</h5>
-<p>首先，Maven远远不只是包管理，更是自动化构建工具！pom。xml就是项目的说明书。 Maven遵循约定优于配置(convention over
-configuration)的原则， 比如生产代码放在src/main，测试代码放在src/test。Maven有两个仓库，中央仓库在远端的服务器上面，
-Maven的中央仓库，按照一定的约定存储包。Maven的本地仓库，默认位于~/.m2，下载的第三方包放在这里缓存。 其次，Maven对所有
-包建立了一层抽象，每个包有groupID, artifactID, version, 按照约定为所有包编号并且 通过这三个标识找唯一的包。注意，Maven
-只下载中央仓库里需要的部分(字节码)，在IDEA里面点击download sources下载源代码。Maven提供语义化版本，比如snapshot(快照版本):
-在开发过程中需要频繁修改， 5.0.0-M1: M是milestone的意思，5.0.0-RC2: RC是release candidate的意思。</p>
-<h5 id="为什么说maven是跨时代的">为什么说Maven是跨时代的</h5>
+    <h2 id="background">Background</h2>
+<p>I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL
+container brought up by docker. I use Flyway to do database migration. In my own laptop,
+my first step is to use docker to run a MySQL container. Then type <code>mvn flyay:migrate</code> in
+IDEA and run my application. Now all these three things must happen on cloud so I choose
+to use docker compose to finsih this task.</p>
+<h2 id="how-to-do-it-step-by-step">How to do it step by step</h2>
 <ol>
 <li>
-<p>传递性依赖的自动管理</p>
-<ul>
-<li>原则: 绝对不允许最终的classpath中出现同名的不同版本的jar包</li>
-<li>解决原则: 就近原则，距离项目最近的胜出(延伸链最短的)。如果距离是一样的，谁的声明靠前谁获胜</li>
-</ul>
+<p>look up office website for docker compose
+After readng through the page, I gained my very simple understanding of docker compose.
+Bascially, there are two steps; the first step is to prepare all the docker images which
+my whole project relies on, the second step is to write the <code>dokcer-compose.yml</code> to config
+docker compose.</p>
 </li>
 <li>
-<p>依赖冲突的解决
-大部分情况都没问题，如果需要手动解决，在IDEA的右侧Maven里面看dependency(人肉扫描)， 或者在IDEA的terminal里面输入
-mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 在中央仓库找到包，包里面有.pom文件，里面有代码的github
-地址，在github里面通过tag来查看不同版本的源码</p>
-<ul>
-<li>解决方法1: 直接依赖冲突包，在pom.xml里面加入dependency</li>
-<li>解决方法2: 强行告诉Maven我需要哪一个, pom.xml的某个dependency的子树里面写入exclusions，这样依赖 关系就断掉了</li>
-<li>解决方法3: 在IDEA里面下载插件，maven helper。</li>
-</ul>
+<p>google some examples on docker compose with springboot
+I found two useful links
+{<a href="https://stackoverflow.com/questions/61849035/communication-link-failure-spring-boot-mysql-docker">1</a>,
+<a href="https://stackoverflow.com/questions/60961757/spring-boot-mysql-docker-compose-cannot-make-spring-boot-connect-to-mysql">2</a>}
+saying the database config info of springboot app needs to be written in docker-compose.yml</p>
 </li>
 <li>
-<p>依赖的scope
-实现依赖的隔离 重要的是两个(compile, test),compile是在main和test里面都有效，test只在test中有效。provided是编译的时候有效，
-运行的时候无效，一个例子是tomcat，他自己提供servlet的包</p>
-</li>
-<li>
-<p>依赖冲突可能会产生的错误信息</p>
-<ul>
-<li>AbstractMethodError</li>
-<li>NoClassDefFoundError</li>
-<li>ClassNotFoundException</li>
-<li>LinkageError</li>
-</ul>
+<p>google some examples on docker compose flyway
+Also I found two useful links
+{<a href="https://stackoverflow.com/questions/52000903/how-to-start-flyway-after-database-initialization-in-docker">1</a>,
+<a href="https://heavylion.medium.com/implementing-flyway-with-docker-8ae256ce634f">2</a>}.
+I just followed the code in the second link to see if it works and it does! That is a good
+news because I do not need to config healthcheck of MySQL and tell flyway to monitor it.</p>
 </li>
 </ol>
+<h2 id="final-result">Final Result</h2>
+<p>My <code>docker-compose.yml</code> looks like below,</p>
+<pre tabindex="0"><code>version: '2.1'
+
+services:
+  docker-mysql:
+    container_name: my-mysql
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=my-secret-pw
+      - MYSQL_DATABASE=blog
+    ports:
+      - 3306:3306
+
+  app:
+    container_name: my-app
+    image: blog:latest
+    ports:
+       - 8080:8080
+    environment:
+       SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/blog?allowPublicKeyRetrieval=true&amp;useSSL=false
+       SPRING_DATASOURCE_USERNAME: root
+       SPRING_DATASOURCE_PASSWORD: my-secret-pw
+    depends_on:
+       - docker-mysql
+    links:
+       - docker-mysql:docker-mysql
+
+  flyway:
+     container_name: my-flyway
+     environment:
+        - FLYWAY_USER=root
+        - FLYWAY_PASSWORD=my-secret-pw
+        - FLYWAY_URL=jdbc:mysql://docker-mysql:3306/blog?allowPublicKeyRetrieval=true&amp;useSSL=false
+        - FLYWAY_TARGET=2
+     image: flyway/flyway:latest
+     command: -locations=filesystem:/flyway/sql -connectRetries=10 migrate
+     volumes:
+        - ./src/main/resources/db/migration/:/flyway/sql
+     depends_on:
+        - docker-mysql
+</code></pre><p>I got this error <code>Public Key Retrieval is not allowed</code> and the answer is
+<a href="https://stackoverflow.com/questions/50379839/connection-java-mysql-public-key-retrieval-is-not-allowed">here</a>.
+The script is very simple to understand. If you have any questions, feel free to ask me.</p>
 
     
 	</div>
@@ -150,7 +162,7 @@ mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/java-package-manager/" data-title="Java Package Manager" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post-backup/docker-compose/" data-title="How to Use Docker Compose For Springboot App" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -172,8 +184,8 @@ mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/java-package-manager/";
-this.page.identifier = "https://jianqibot.github.io/post/java-package-manager/";
+this.page.url = "https://jianqibot.github.io/post-backup/docker-compose/";
+this.page.identifier = "https://jianqibot.github.io/post-backup/docker-compose/";
 };
 (function() { 
 var d = document, s = d.createElement('script');
@@ -312,38 +324,6 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -370,27 +350,6 @@ $(document).ready(function(){
 });
 </script>
 
-
-<link rel="stylesheet" href="https://jianqibot.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="https://jianqibot.github.io/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-});
-</script>
 
 
 <script>

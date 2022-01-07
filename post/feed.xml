@@ -6,32 +6,32 @@
     <description>Recent content in Posts on Jianqi&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Wed, 05 Jan 2022 22:43:16 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/post/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 07 Jan 2022 23:16:19 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/post/feed.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Java Package Manager</title>
       <link>https://jianqibot.github.io/post/java-package-manager/</link>
-      <pubDate>Wed, 05 Jan 2022 22:43:16 +1100</pubDate>
+      <pubDate>Fri, 07 Jan 2022 23:16:19 +1100</pubDate>
       
       <guid>https://jianqibot.github.io/post/java-package-manager/</guid>
-      <description>Java中的依赖问题 传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，cl</description>
+      <description>Java中的传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，classp</description>
     </item>
     
     <item>
-      <title>Blog2</title>
-      <link>https://jianqibot.github.io/post/blog2/</link>
-      <pubDate>Tue, 21 Dec 2021 21:31:42 +1100</pubDate>
-      
-      <guid>https://jianqibot.github.io/post/blog2/</guid>
-      <description>#345 ##123</description>
-    </item>
-    
-    <item>
-      <title>how to use docker compose for springboot app</title>
+      <title>How to Use Docker Compose For Springboot App</title>
       <link>https://jianqibot.github.io/post/docker-compose/</link>
-      <pubDate>Tue, 21 Dec 2021 21:29:08 +1100</pubDate>
+      <pubDate>Fri, 07 Jan 2022 23:07:56 +1100</pubDate>
       
       <guid>https://jianqibot.github.io/post/docker-compose/</guid>
       <description>Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.</description>
+    </item>
+    
+    <item>
+      <title>Java Collections</title>
+      <link>https://jianqibot.github.io/post/java-collections/</link>
+      <pubDate>Fri, 07 Jan 2022 22:10:34 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/java-collections/</guid>
+      <description>集合类的特点 集合只用于存储对象，集合长度是可变的，集合可以存储不同类型的对象并且高效的操作数据。 推荐看一下collection继承体系图 抽象</description>
     </item>
     
   </channel>

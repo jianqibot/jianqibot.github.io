@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/java-package-manager/" title="Java Package Manager" itemprop="url">Java Package Manager</a>
+      <a href="https://jianqibot.github.io/post-backup/java-package-manager/" title="Java Package Manager" itemprop="url">Java Package Manager</a>
   </h1>
   <p class="article-author">By
     
@@ -150,7 +150,7 @@ mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/java-package-manager/" data-title="Java Package Manager" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post-backup/java-package-manager/" data-title="Java Package Manager" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -172,8 +172,8 @@ mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/java-package-manager/";
-this.page.identifier = "https://jianqibot.github.io/post/java-package-manager/";
+this.page.url = "https://jianqibot.github.io/post-backup/java-package-manager/";
+this.page.identifier = "https://jianqibot.github.io/post-backup/java-package-manager/";
 };
 (function() { 
 var d = document, s = d.createElement('script');
@@ -312,38 +312,6 @@ $(document).ready(function(){
 
 <script type="text/javascript">
 $(document).ready(function(){
-  var ai = $('.article-content>iframe'),
-      ae = $('.article-content>embed'),
-      t  = $('#toc'),
-      h  = $('article h2')
-      ah = $('article h2'),
-      ta = $('#toc.toc-aside'),
-      o  = $('.openaside'),
-      c  = $('.closeaside');
-  if(ai.length>0){
-    ai.wrap('<div class="video-container" />');
-  };
-  if(ae.length>0){
-   ae.wrap('<div class="video-container" />');
-  };
-  if(ah.length==0){
-    t.css('display','none');
-  }else{
-    c.click(function(){
-      ta.css('display', 'block').addClass('fadeIn');
-    });
-    o.click(function(){
-      ta.css('display', 'none');
-    });
-    $(window).scroll(function(){
-      ta.css("top",Math.max(140,320-$(this).scrollTop()));
-    });
-  };
-});
-</script>
-
-<script type="text/javascript">
-$(document).ready(function(){
   var $this = $('.share'),
       url = $this.attr('data-url'),
       encodedUrl = encodeURIComponent(url),
@@ -370,27 +338,6 @@ $(document).ready(function(){
 });
 </script>
 
-
-<link rel="stylesheet" href="https://jianqibot.github.io/fancybox/jquery.fancybox.css" media="screen" type="text/css">
-<script src="https://jianqibot.github.io/fancybox/jquery.fancybox.pack.js"></script>
-<script type="text/javascript">
-$(document).ready(function(){
-  $('.article-content').each(function(i){
-    $(this).find('img').each(function(){
-      if ($(this).parent().hasClass('fancybox')) return;
-      var alt = this.alt;
-      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
-      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
-    });
-    $(this).find('.fancybox').each(function(){
-      $(this).attr('rel', 'article' + i);
-    });
-  });
-  if($.fancybox){
-    $('.fancybox').fancybox();
-  }
-});
-</script>
 
 
 <script>

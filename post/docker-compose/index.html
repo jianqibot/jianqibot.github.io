@@ -2,12 +2,12 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>how to use docker compose for springboot app - Jianqi&#39;s blog</title>
+  <title>How to Use Docker Compose For Springboot App - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
   <meta name="description" content="Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.">
   
-  <meta itemprop="name" content="how to use docker compose for springboot app - Jianqi&#39;s blog">
+  <meta itemprop="name" content="How to Use Docker Compose For Springboot App - Jianqi&#39;s blog">
   <meta itemprop="description" content="Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/docker-compose/" title="how to use docker compose for springboot app" itemprop="url">how to use docker compose for springboot app</a>
+      <a href="https://jianqibot.github.io/post/docker-compose/" title="How to Use Docker Compose For Springboot App" itemprop="url">How to Use Docker Compose For Springboot App</a>
   </h1>
   <p class="article-author">By
     
@@ -72,35 +72,45 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2021-12-21 21:29:08 &#43;1100 AEDT" itemprop="datePublished">212112年1221月2112日</time>
+    <time datetime="2022-01-07 23:07:56 &#43;1100 AEDT" itemprop="datePublished">7071年17月71日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h1 id="background">Background</h1>
+    <h2 id="background">Background</h2>
 <p>I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL
 container brought up by docker. I use Flyway to do database migration. In my own laptop,
-my first step is to use docker to run a MySQL container. Then type <code>mvn flyay:migrate</code>
-in IDEA and run my application. Now all these three things must happen on cloud so I
-choose to use docker compose to finsih this task.</p>
-<h1 id="how-to-do-it-step-by-step">How to do it step by step</h1>
-<h3 id="1-look-up-office-website-for-docker-compose">1. look up office website for docker compose</h3>
-<p>After readng through the page, I gained my very simple understanding of docker compose.
-Bascially, there are two steps; the first step is to prepare all the docker images which my
-whole project relies on, the second step is to write the <code>dokcer-compose.yml</code> to config
+my first step is to use docker to run a MySQL container. Then type <code>mvn flyay:migrate</code> in
+IDEA and run my application. Now all these three things must happen on cloud so I choose
+to use docker compose to finsih this task.</p>
+<h2 id="how-to-do-it-step-by-step">How to do it step by step</h2>
+<ol>
+<li>
+<p>look up office website for docker compose
+After readng through the page, I gained my very simple understanding of docker compose.
+Bascially, there are two steps; the first step is to prepare all the docker images which
+my whole project relies on, the second step is to write the <code>dokcer-compose.yml</code> to config
 docker compose.</p>
-<h3 id="2-google-some-examples-on-docker-compose-with-springboot">2. google some examples on docker compose with springboot</h3>
-<p>I found two useful links {<a href="https://stackoverflow.com/questions/61849035/communication-link-failure-spring-boot-mysql-docker">1</a>,
+</li>
+<li>
+<p>google some examples on docker compose with springboot
+I found two useful links
+{<a href="https://stackoverflow.com/questions/61849035/communication-link-failure-spring-boot-mysql-docker">1</a>,
 <a href="https://stackoverflow.com/questions/60961757/spring-boot-mysql-docker-compose-cannot-make-spring-boot-connect-to-mysql">2</a>}
-saying the database config info of springboot app needs to be written in <code>docker-compose.yml</code></p>
-<h3 id="3-google-some-examples-on-docker-compose-flyway">3. google some examples on docker compose flyway</h3>
-<p>Also I found two useful links {<a href="https://stackoverflow.com/questions/52000903/how-to-start-flyway-after-database-initialization-in-docker">1</a>,
-<a href="https://heavylion.medium.com/implementing-flyway-with-docker-8ae256ce634f">2</a>}. I just
-followed the code in the second link to see if it works and it does! That is a good news
-because I do not need to config healthcheck of MySQL and tell flyway to monitor it.</p>
-<h1 id="final-result">Final Result</h1>
-<p>My  <code>docker-compose.yml</code> looks like below,</p>
+saying the database config info of springboot app needs to be written in docker-compose.yml</p>
+</li>
+<li>
+<p>google some examples on docker compose flyway
+Also I found two useful links
+{<a href="https://stackoverflow.com/questions/52000903/how-to-start-flyway-after-database-initialization-in-docker">1</a>,
+<a href="https://heavylion.medium.com/implementing-flyway-with-docker-8ae256ce634f">2</a>}.
+I just followed the code in the second link to see if it works and it does! That is a good
+news because I do not need to config healthcheck of MySQL and tell flyway to monitor it.</p>
+</li>
+</ol>
+<h2 id="final-result">Final Result</h2>
+<p>My <code>docker-compose.yml</code> looks like below,</p>
 <pre tabindex="0"><code>version: '2.1'
 
 services:
@@ -152,7 +162,7 @@ The script is very simple to understand. If you have any questions, feel free to
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/docker-compose/" data-title="how to use docker compose for springboot app" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post/docker-compose/" data-title="How to Use Docker Compose For Springboot App" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -216,12 +226,7 @@ xhr.send(null);
       
       
       <li class="archive-list-item">
-        <a class="archive-list-link" href="https://jianqibot.github.io/post/#2022-01">5051年15月</a><span class="archive-list-count">1</span>
-      </li>
-      
-      
-      <li class="archive-list-item">
-        <a class="archive-list-link" href="https://jianqibot.github.io/post/#2021-12">212112年1221月</a><span class="archive-list-count">2</span>
+        <a class="archive-list-link" href="https://jianqibot.github.io/post/#2022-01">7071年17月</a><span class="archive-list-count">3</span>
       </li>
       
     </ul>
