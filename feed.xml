@@ -6,7 +6,16 @@
     <description>Recent content on Jianqi&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Sun, 16 Jan 2022 20:29:34 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Apr 2022 23:03:34 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Java GC</title>
+      <link>https://jianqibot.github.io/post/c57-info/</link>
+      <pubDate>Mon, 18 Apr 2022 23:03:34 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/c57-info/</guid>
+      <description>内存模型与垃圾回收的基本知识 Java的自动内存管理 垃圾回收两个派别 -&amp;gt; 手动管理/自动管理 自动管理两个派别 -&amp;gt; 引用计数/标记清除 引用计数: 看每个对</description>
+    </item>
+    
     <item>
       <title>Renting Obligations</title>
       <link>https://jianqibot.github.io/post/renting-obliations/</link>

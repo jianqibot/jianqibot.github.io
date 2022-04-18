@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>How to Use Docker Compose For Springboot App - Jianqi&#39;s blog</title>
+  <title>Java GC - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.">
+  <meta name="description" content="内存模型与垃圾回收的基本知识 Java的自动内存管理 垃圾回收两个派别 -&gt; 手动管理/自动管理 自动管理两个派别 -&gt; 引用计数/标记清除 引用计数: 看每个对">
   
-  <meta itemprop="name" content="How to Use Docker Compose For Springboot App - Jianqi&#39;s blog">
-  <meta itemprop="description" content="Background I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL container brought up by docker. I use Flyway to do database migration. In my own laptop, my first step is to use docker to run a MySQL container. Then type mvn flyay:migrate in IDEA and run my application. Now all these three things must happen on cloud so I choose to use docker compose to finsih this task.">
+  <meta itemprop="name" content="Java GC - Jianqi&#39;s blog">
+  <meta itemprop="description" content="内存模型与垃圾回收的基本知识 Java的自动内存管理 垃圾回收两个派别 -&gt; 手动管理/自动管理 自动管理两个派别 -&gt; 引用计数/标记清除 引用计数: 看每个对">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/docker-compose/" title="How to Use Docker Compose For Springboot App" itemprop="url">How to Use Docker Compose For Springboot App</a>
+      <a href="https://jianqibot.github.io/post/c57-info/" title="Java GC" itemprop="url">Java GC</a>
   </h1>
   <p class="article-author">By
     
@@ -72,87 +72,180 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2022-01-07 23:07:56 &#43;1100 AEDT" itemprop="datePublished">7071年17月71日</time>
+    <time datetime="2022-04-18 23:03:34 &#43;1100 &#43;1100" itemprop="datePublished">18184年418月184日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h2 id="background">Background</h2>
-<p>I need to deploy my springboot application onto AWS cloud. My app is connected to a MySQL
-container brought up by docker. I use Flyway to do database migration. In my own laptop,
-my first step is to use docker to run a MySQL container. Then type <code>mvn flyay:migrate</code> in
-IDEA and run my application. Now all these three things must happen on cloud so I choose
-to use docker compose to finsih this task.</p>
-<h2 id="how-to-do-it-step-by-step">How to do it step by step</h2>
+    <h1 id="内存模型与垃圾回收的基本知识">内存模型与垃圾回收的基本知识</h1>
+<h2 id="java的自动内存管理">Java的自动内存管理</h2>
 <ol>
 <li>
-<p>look up office website for docker compose
-After readng through the page, I gained my very simple understanding of docker compose.
-Bascially, there are two steps; the first step is to prepare all the docker images which
-my whole project relies on, the second step is to write the <code>dokcer-compose.yml</code> to config
-docker compose.</p>
+<p>垃圾回收两个派别 -&gt; 手动管理/自动管理</p>
 </li>
 <li>
-<p>google some examples on docker compose with springboot
-I found two useful links
-{<a href="https://stackoverflow.com/questions/61849035/communication-link-failure-spring-boot-mysql-docker">1</a>,
-<a href="https://stackoverflow.com/questions/60961757/spring-boot-mysql-docker-compose-cannot-make-spring-boot-connect-to-mysql">2</a>}
-saying the database config info of springboot app needs to be written in docker-compose.yml</p>
+<p>自动管理两个派别 -&gt; 引用计数/标记清除 <br>
+引用计数: 看每个对象被引用的次数，如果是0 <br>
+的话(没有任何引用)，则清除，注意任何被它引用 <br>
+的对象的计数要减1</p>
+<p>引用计数的最大问题在于无法处理 循环引用</p>
+<p>标记清除: 事先定义好root，然后链子不断延伸 <br>
+没有被链到的对象都是垃圾(大多数语言所采用，JS/python/Java&hellip;)</p>
 </li>
 <li>
-<p>google some examples on docker compose flyway
-Also I found two useful links
-{<a href="https://stackoverflow.com/questions/52000903/how-to-start-flyway-after-database-initialization-in-docker">1</a>,
-<a href="https://heavylion.medium.com/implementing-flyway-with-docker-8ae256ce634f">2</a>}.
-I just followed the code in the second link to see if it works and it does! That is a good
-news because I do not need to config healthcheck of MySQL and tell flyway to monitor it.</p>
+<p>内存碎片化问题
+任何干净的内存都无法容纳新的大对象，需要做内存压缩</p>
+</li>
+<li>
+<p>内存管理 = GC + 内存压缩</p>
 </li>
 </ol>
-<h2 id="final-result">Final Result</h2>
-<p>My <code>docker-compose.yml</code> looks like below,</p>
-<pre tabindex="0"><code>version: &#39;2.1&#39;
-
-services:
-  docker-mysql:
-    container_name: my-mysql
-    image: mysql:8.0
-    environment:
-      - MYSQL_ROOT_PASSWORD=my-secret-pw
-      - MYSQL_DATABASE=blog
-    ports:
-      - 3306:3306
-
-  app:
-    container_name: my-app
-    image: blog:latest
-    ports:
-       - 8080:8080
-    environment:
-       SPRING_DATASOURCE_URL: jdbc:mysql://docker-mysql:3306/blog?allowPublicKeyRetrieval=true&amp;useSSL=false
-       SPRING_DATASOURCE_USERNAME: root
-       SPRING_DATASOURCE_PASSWORD: my-secret-pw
-    depends_on:
-       - docker-mysql
-    links:
-       - docker-mysql:docker-mysql
-
-  flyway:
-     container_name: my-flyway
-     environment:
-        - FLYWAY_USER=root
-        - FLYWAY_PASSWORD=my-secret-pw
-        - FLYWAY_URL=jdbc:mysql://docker-mysql:3306/blog?allowPublicKeyRetrieval=true&amp;useSSL=false
-        - FLYWAY_TARGET=2
-     image: flyway/flyway:latest
-     command: -locations=filesystem:/flyway/sql -connectRetries=10 migrate
-     volumes:
-        - ./src/main/resources/db/migration/:/flyway/sql
-     depends_on:
-        - docker-mysql
-</code></pre><p>I got this error <code>Public Key Retrieval is not allowed</code> and the answer is
-<a href="https://stackoverflow.com/questions/50379839/connection-java-mysql-public-key-retrieval-is-not-allowed">here</a>.
-The script is very simple to understand. If you have any questions, feel free to ask me.</p>
+<h2 id="引用类型gc基本原理">引用类型、GC基本原理</h2>
+<ol>
+<li>
+<p>引用的类型</p>
+<ul>
+<li>强引用/strong reference: 命令式语句都是强引用</li>
+<li>软引用/soft reference: 内存不够的时候会回收它们</li>
+<li>弱引用/weak reference:  一有GC就回收它们</li>
+<li>影子引用/phantom reference: 只能拿到影子，拿不到引用本身</li>
+<li>SoftRefernce/WeakReference等 都定义在 java.lang.ref里面</li>
+</ul>
+</li>
+<li>
+<p>垃圾是如何产生的</p>
+<ul>
+<li>在main方法调用foo方法，main的栈帧新增foo的栈帧，heap里面new Object对象，</li>
+<li>对象地址指到foo栈帧 <br>
+<a href="/images/C57/1.png">第一步</a></li>
+<li>foo执行完以后，foo的栈帧被销毁，但heap里面的Object对象还存在，就变成了垃圾 <br>
+<a href="/images/C57/2.png">第二步</a></li>
+</ul>
+</li>
+<li>
+<p>GC的原理</p>
+<ul>
+<li>从GC roots(确定不是垃圾)出发，做可达性分析，一直到头，剩下的就是垃圾</li>
+</ul>
+</li>
+<li>
+<p>GC roots</p>
+<ul>
+<li>活的线程/java.lang.Thread</li>
+<li>类的静态成员</li>
+<li>线程方法栈所引用的对象
+<ul>
+<li><a href="/images/C57/3.png">说明</a>/线程本身也是GC root</li>
+</ul>
+</li>
+<li>JNI/java native interface引用的对象
+<ul>
+<li>JNI: 通过接口调用C代码</li>
+</ul>
+</li>
+<li>分代GC时其他代的对象</li>
+</ul>
+</li>
+<li>
+<p>GC发生了什么</p>
+<ul>
+<li><a href="/images/C57/4.png">说明图</a></li>
+</ul>
+<ol>
+<li>stop the world(STW): 所有线程停下</li>
+<li>清除垃圾</li>
+<li>压缩内存(老年代)</li>
+<li>copy(新生代)</li>
+</ol>
+</li>
+<li>
+<p>对象的分代假设</p>
+<ul>
+<li>对象都是用完即弃的，生命周期很短</li>
+<li>内存的分代
+<ol>
+<li>年轻代/yong generation</li>
+<li>老年代/tenured</li>
+<li>永久代/permanent generation</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>
+<p>年轻代</p>
+<ol>
+<li>
+<p>伊甸园/Eden <br>
+无论何时，new一个对象的时候都会i出现在伊甸园中 <br>
+可分为多个Thread Local Allocation Buffer/TLAB <br>
+多线程访问共享内存，要么加锁，要么分为独立的小区域(TLAB选择后者) <br>
+TLAB有上限，如果超多则分配common area，要加锁 \</p>
+</li>
+<li>
+<p>Survior(S0/S1) <br>
+Yong GC发生时，整个年起代进入其中一个Survior区 <br>
+比如Eden满了以后，会发生yong GC，所有的非垃圾进入到两个survivor <br>
+中的一个，下一次的GC会进入另外一个Survivor，任何时间只有一个survivor <br>
+有东西，另一个是空的 <br>
+<br>
+足够老的对象被提升到老年代(超过15次GC以后) \</p>
+</li>
+</ol>
+</li>
+<li>
+<p>老年代</p>
+<ul>
+<li>年龄‘偏大’，发生GC的频率低，清除垃圾，压紧收缩</li>
+</ul>
+</li>
+<li>
+<p>永久代(java 8-)/元空间(java 8+)</p>
+<ul>
+<li>永久代: 是堆的一部分，存储类数据，字符串常量</li>
+<li>OOM(out of memory)一般原因有两个: 自定义ClassLoader和动态字节码生成</li>
+<li>元空间: 不是堆的一部分，除非特殊指定，否则没有上限， -XX:MaxMetaspaceSize</li>
+</ul>
+</li>
+<li>
+<p>GC的种类</p>
+<ul>
+<li>Minor GC/Yong GC
+<ul>
+<li>总是发生在Eden满的时候</li>
+<li>会发生STW</li>
+</ul>
+</li>
+<li>Major GC/Full GC
+<ul>
+<li>Major GC清除老年代: 如果对象过大，直接放入老年代</li>
+<li>这样是不好的，需要把新生代的内存调大一些</li>
+<li>Full GC清除整个堆</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>分析OOM</p>
+<ol>
+<li>terminal: jps 看到进程号</li>
+<li>jmap -dump:live,format=b,file=`pwd`/process_id.hprof process_id</li>
+</ol>
+</li>
+<li>
+<p>GC算法</p>
+<ul>
+<li>看图</li>
+<li>JVM option: -XX代表hotspot专有的，+UseSerialGC里面的+代表开启，-代表关闭</li>
+</ul>
+</li>
+<li>
+<p>垃圾回收的过程
+-XX:PrintGCDetails
+-XX:PrintGCDataStamps
+-XX:PrintGCTimeStamps</p>
+</li>
+</ol>
 
     
 	</div>
@@ -162,7 +255,7 @@ The script is very simple to understand. If you have any questions, feel free to
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/docker-compose/" data-title="How to Use Docker Compose For Springboot App" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post/c57-info/" data-title="Java GC" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -184,8 +277,8 @@ The script is very simple to understand. If you have any questions, feel free to
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/docker-compose/";
-this.page.identifier = "https://jianqibot.github.io/post/docker-compose/";
+this.page.url = "https://jianqibot.github.io/post/c57-info/";
+this.page.identifier = "https://jianqibot.github.io/post/c57-info/";
 };
 (function() { 
 var d = document, s = d.createElement('script');
