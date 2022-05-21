@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Java GC - Jianqi&#39;s blog</title>
+  <title>Java-封装与访问控制 - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="内存模型与垃圾回收的基本知识 Java的自动内存管理 垃圾回收两个派别 -&gt; 手动管理/自动管理 自动管理两个派别 -&gt; 引用计数/标记清除 引用计数: 看每个对">
+  <meta name="description" content="面向对象：封装与访问控制 封装及其必要性 封装就是隐藏内部实现的细节，只暴露接口 public class Home { public static void main(Strinf[] args) { Light light1 = new Light(); light.turnOn(); Light light2 = new Light(); light2.打开电路">
   
-  <meta itemprop="name" content="Java GC - Jianqi&#39;s blog">
-  <meta itemprop="description" content="内存模型与垃圾回收的基本知识 Java的自动内存管理 垃圾回收两个派别 -&gt; 手动管理/自动管理 自动管理两个派别 -&gt; 引用计数/标记清除 引用计数: 看每个对">
+  <meta itemprop="name" content="Java-封装与访问控制 - Jianqi&#39;s blog">
+  <meta itemprop="description" content="面向对象：封装与访问控制 封装及其必要性 封装就是隐藏内部实现的细节，只暴露接口 public class Home { public static void main(Strinf[] args) { Light light1 = new Light(); light.turnOn(); Light light2 = new Light(); light2.打开电路">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/c57-info/" title="Java GC" itemprop="url">Java GC</a>
+      <a href="https://jianqibot.github.io/post/c11-%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/" title="Java-封装与访问控制" itemprop="url">Java-封装与访问控制</a>
   </h1>
   <p class="article-author">By
     
@@ -72,178 +72,137 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2022-04-18 23:03:34 &#43;1100 &#43;1100" itemprop="datePublished">18184年418月184日</time>
+    <time datetime="2022-05-21 23:40:35 &#43;1000 AEST" itemprop="datePublished">21215年521月215日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h1 id="内存模型与垃圾回收的基本知识">内存模型与垃圾回收的基本知识</h1>
-<h2 id="java的自动内存管理">Java的自动内存管理</h2>
+    <h1 id="面向对象封装与访问控制">面向对象：封装与访问控制</h1>
+<h2 id="封装及其必要性">封装及其必要性</h2>
+<ol>
+<li>封装就是隐藏内部实现的细节，只暴露接口</li>
+</ol>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Home</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">Strinf</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">		<span class="n">Light</span> <span class="n">light1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Light</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">light</span><span class="o">.</span><span class="na">turnOn</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">		<span class="n">Light</span> <span class="n">light2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Light</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">light2</span><span class="o">.</span><span class="na">打开电路1</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">light2</span><span class="o">.</span><span class="na">打开电路2</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">		<span class="n">light2</span><span class="o">.</span><span class="na">打开电路3</span><span class="o">();</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Light</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">turnOn</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="n">打开电路1</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">		<span class="n">打开电路2</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">	    <span class="n">打开电路3</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">打开电路1</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">打开电路2</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kt">void</span> <span class="nf">打开电路3</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>	
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Home里面调用Light的方法，产生了耦合。耦合是不好的实践，因为耦合让扩展变得困难，比如开打电路3不需要了，
+那么Home里面的代码也要跟着改变。如果把打开电路等都封装到turnOn方法里面，那么这种低耦合确保Home不需要改变。
+封装的意义在于对外把暴露出尽可能少的接口</p>
+<p>另外一个例子，</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="n">Public</span> <span class="n">Class</span> <span class="n">Person</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">Integer</span> <span class="n">age</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="n">String</span> <span class="n">name</span><span class="o">;</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="nf">setAge</span><span class="o">(</span><span class="n">Integer</span> <span class="n">age</span><span class="o">)</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">this</span><span class="o">.</span><span class="na">age</span> <span class="o">=</span> <span class="n">age</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl">	<span class="o">...</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>如果<code>person.age</code>被调用了很多次，突然有一天领导说要大于100的按100算，那么凡是被调用的代码就需要修改无数个地方。
+但是如果是通过<code>person.setAge</code>调用的，只需要在<code>Person</code>内部加一个简单的逻辑即可</p>
+<p>更加真实的情况是你写的软件作为第三方库被别人用，如果你的一点点的改变需要让别人跟着改变，这样会让人头疼。
+<strong>软件设计的核心之一是低耦合</strong>
+<strong>不封装是一件非常恐怖的事情</strong></p>
+<h2 id="访问控制符">访问控制符</h2>
 <ol>
 <li>
-<p>垃圾回收两个派别 -&gt; 手动管理/自动管理</p>
+<p>4种访问限定符，<strong>通过限定符来行进封装，取得对外暴露尽可能少的接口</strong></p>
 </li>
 <li>
-<p>自动管理两个派别 -&gt; 引用计数/标记清除 <br>
-引用计数: 看每个对象被引用的次数，如果是0 <br>
-的话(没有任何引用)，则清除，注意任何被它引用 <br>
-的对象的计数要减1</p>
-<p>引用计数的最大问题在于无法处理 循环引用</p>
-<p>标记清除: 事先定义好root，然后链子不断延伸 <br>
-没有被链到的对象都是垃圾(大多数语言所采用，JS/python/Java&hellip;)</p>
-</li>
-<li>
-<p>内存碎片化问题
-任何干净的内存都无法容纳新的大对象，需要做内存压缩</p>
-</li>
-<li>
-<p>内存管理 = GC + 内存压缩</p>
+<p>包的功能 -&gt;</p>
+<ul>
+<li>区分同名的类</li>
+<li>访问控制(最重要): 提供了一种边界</li>
+<li><strong>包之间是没有包含/嵌套关系的</strong></li>
+</ul>
 </li>
 </ol>
-<h2 id="引用类型gc基本原理">引用类型、GC基本原理</h2>
+<h2 id="gettersetter方法与javabean约定">getter、setter方法与JavaBean约定</h2>
 <ol>
 <li>
-<p>引用的类型</p>
-<ul>
-<li>强引用/strong reference: 命令式语句都是强引用</li>
-<li>软引用/soft reference: 内存不够的时候会回收它们</li>
-<li>弱引用/weak reference:  一有GC就回收它们</li>
-<li>影子引用/phantom reference: 只能拿到影子，拿不到引用本身</li>
-<li>SoftRefernce/WeakReference等 都定义在 java.lang.ref里面</li>
-</ul>
+<p>getter/setter的命名规则，最主要用途在JSON(前后端通信的事实标准),JSON
+本质是用字符串来表示对象</p>
 </li>
 <li>
-<p>垃圾是如何产生的</p>
-<ul>
-<li>在main方法调用foo方法，main的栈帧新增foo的栈帧，heap里面new Object对象，</li>
-<li>对象地址指到foo栈帧 <br>
-<a href="/images/C57/1.png">第一步</a></li>
-<li>foo执行完以后，foo的栈帧被销毁，但heap里面的Object对象还存在，就变成了垃圾 <br>
-<a href="/images/C57/2.png">第二步</a></li>
-</ul>
+<p>序列化: 内存中的对象 -&gt; 看得见的字符串/字节流
+反序列化: 看得见的字符串/字节流 -&gt; 内存中的对象
+JSON是序列化/反序列化的一种实现</p>
 </li>
 <li>
-<p>GC的原理</p>
-<ul>
-<li>从GC roots(确定不是垃圾)出发，做可达性分析，一直到头，剩下的就是垃圾</li>
-</ul>
-</li>
-<li>
-<p>GC roots</p>
-<ul>
-<li>活的线程/java.lang.Thread</li>
-<li>类的静态成员</li>
-<li>线程方法栈所引用的对象
-<ul>
-<li><a href="/images/C57/3.png">说明</a>/线程本身也是GC root</li>
-</ul>
-</li>
-<li>JNI/java native interface引用的对象
-<ul>
-<li>JNI: 通过接口调用C代码</li>
-</ul>
-</li>
-<li>分代GC时其他代的对象</li>
-</ul>
-</li>
-<li>
-<p>GC发生了什么</p>
-<ul>
-<li><a href="/images/C57/4.png">说明图</a></li>
-</ul>
-<ol>
-<li>stop the world(STW): 所有线程停下</li>
-<li>清除垃圾</li>
-<li>压缩内存(老年代)</li>
-<li>copy(新生代)</li>
-</ol>
-</li>
-<li>
-<p>对象的分代假设</p>
-<ul>
-<li>对象都是用完即弃的，生命周期很短</li>
-<li>内存的分代
-<ol>
-<li>年轻代/yong generation</li>
-<li>老年代/tenured</li>
-<li>永久代/permanent generation</li>
-</ol>
-</li>
-</ul>
-</li>
-<li>
-<p>年轻代</p>
-<ol>
-<li>
-<p>伊甸园/Eden <br>
-无论何时，new一个对象的时候都会i出现在伊甸园中 <br>
-可分为多个Thread Local Allocation Buffer/TLAB <br>
-多线程访问共享内存，要么加锁，要么分为独立的小区域(TLAB选择后者) <br>
-TLAB有上限，如果超多则分配common area，要加锁 \</p>
-</li>
-<li>
-<p>Survior(S0/S1) <br>
-Yong GC发生时，整个年起代进入其中一个Survior区 <br>
-比如Eden满了以后，会发生yong GC，所有的非垃圾进入到两个survivor <br>
-中的一个，下一次的GC会进入另外一个Survivor，任何时间只有一个survivor <br>
-有东西，另一个是空的 <br>
-<br>
-足够老的对象被提升到老年代(超过15次GC以后) \</p>
+<p><strong>对JSON序列化/反序列化的时候，只看getter/setter，与实际的属性无关</strong>
+如果属性存在，但是没有其getter/setter方法，那么序列化后的JSON不会包含该属性</p>
 </li>
 </ol>
-</li>
-<li>
-<p>老年代</p>
-<ul>
-<li>年龄‘偏大’，发生GC的频率低，清除垃圾，压紧收缩</li>
-</ul>
-</li>
-<li>
-<p>永久代(java 8-)/元空间(java 8+)</p>
-<ul>
-<li>永久代: 是堆的一部分，存储类数据，字符串常量</li>
-<li>OOM(out of memory)一般原因有两个: 自定义ClassLoader和动态字节码生成</li>
-<li>元空间: 不是堆的一部分，除非特殊指定，否则没有上限， -XX:MaxMetaspaceSize</li>
-</ul>
-</li>
-<li>
-<p>GC的种类</p>
-<ul>
-<li>Minor GC/Yong GC
-<ul>
-<li>总是发生在Eden满的时候</li>
-<li>会发生STW</li>
-</ul>
-</li>
-<li>Major GC/Full GC
-<ul>
-<li>Major GC清除老年代: 如果对象过大，直接放入老年代</li>
-<li>这样是不好的，需要把新生代的内存调大一些</li>
-<li>Full GC清除整个堆</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>
-<p>分析OOM</p>
+<h2 id="设计模式实战">设计模式实战</h2>
 <ol>
-<li>terminal: jps 看到进程号</li>
-<li>jmap -dump:live,format=b,file=`pwd`/process_id.hprof process_id</li>
-</ol>
-</li>
 <li>
-<p>GC算法</p>
+<p>静态工厂方法的好处</p>
 <ul>
-<li>看图</li>
-<li>JVM option: -XX代表hotspot专有的，+UseSerialGC里面的+代表开启，-代表关闭</li>
+<li>是有自定义的名字</li>
+<li>可以加入额外的逻辑，不一定每次调用都会创建新的对象</li>
+<li>可以返回子类</li>
+<li>可以根据输入参数不同返回不同的对象，可以预先定义好static的类，
+然后不同情况返回不同的类，这样省时间，也省空间</li>
 </ul>
 </li>
 <li>
-<p>垃圾回收的过程
--XX:PrintGCDetails
--XX:PrintGCDataStamps
--XX:PrintGCTimeStamps</p>
+<p>静态工厂方法的坏处</p>
+<ul>
+<li>不能被子类化，因为是静态的</li>
+<li>不容易从文档中找到</li>
+</ul>
+</li>
+<li>
+<p>Builder模式</p>
+</li>
+</ol>
+<h2 id="类的访问控制符">类的访问控制符</h2>
+<ol>
+<li>
+<p>怎么样做bridge(黑科技)</p>
+</li>
+<li>
+<p>JVM只关心类名，类文件在哪里是无所谓的</p>
+</li>
+<li>
+<p>java 9引入的module，模块化系统，提供更大层面的封装</p>
 </li>
 </ol>
 
@@ -255,7 +214,7 @@ Yong GC发生时，整个年起代进入其中一个Survior区 <br>
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/c57-info/" data-title="Java GC" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post/c11-%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/" data-title="Java-封装与访问控制" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -277,8 +236,8 @@ Yong GC发生时，整个年起代进入其中一个Survior区 <br>
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/c57-info/";
-this.page.identifier = "https://jianqibot.github.io/post/c57-info/";
+this.page.url = "https://jianqibot.github.io/post/c11-%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/";
+this.page.identifier = "https://jianqibot.github.io/post/c11-%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/";
 };
 (function() { 
 var d = document, s = d.createElement('script');
