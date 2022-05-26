@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Renting Obligations - Jianqi&#39;s blog</title>
+  <title>Java 组合与继承 - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="前言 当您看到这篇帖子的时候，我猜想您已经在认真考虑是否租房的问题了。 感谢您抽空来看房，这说明我们之间有缘分。此公寓的最大特点就是地段好， 去市">
+  <meta name="description" content="面向对象：组合与继承 继承的本质是避免重复 程序员的宿命就是复制粘贴？ 真的只能这样吗？ DRY原则/事不过三，三则重构 继承的本质就是提炼公用的代码">
   
-  <meta itemprop="name" content="Renting Obligations - Jianqi&#39;s blog">
-  <meta itemprop="description" content="前言 当您看到这篇帖子的时候，我猜想您已经在认真考虑是否租房的问题了。 感谢您抽空来看房，这说明我们之间有缘分。此公寓的最大特点就是地段好， 去市">
+  <meta itemprop="name" content="Java 组合与继承 - Jianqi&#39;s blog">
+  <meta itemprop="description" content="面向对象：组合与继承 继承的本质是避免重复 程序员的宿命就是复制粘贴？ 真的只能这样吗？ DRY原则/事不过三，三则重构 继承的本质就是提炼公用的代码">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/renting-obliations/" title="Renting Obligations" itemprop="url">Renting Obligations</a>
+      <a href="https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/" title="Java 组合与继承" itemprop="url">Java 组合与继承</a>
   </h1>
   <p class="article-author">By
     
@@ -72,73 +72,68 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2022-01-16 20:29:34 &#43;1100 AEDT" itemprop="datePublished">16161年116月161日</time>
+    <time datetime="2022-05-27 00:39:23 &#43;1000 AEST" itemprop="datePublished">27275年527月275日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h2 id="前言">前言</h2>
-<p>当您看到这篇帖子的时候，我猜想您已经在认真考虑是否租房的问题了。
-感谢您抽空来看房，这说明我们之间有缘分。此公寓的最大特点就是地段好，
-去市中心和ANU都非常的方便，当然房租相较其他地段的公寓来讲也不是特别
-的便宜。鉴于之前房客的经验，我写了这篇帖子，列出一些注意事项，希望您入住
-以后能保持舒适的居住环境，给自己和室友一个好心情。</p>
-<p>毕竟，<em><strong>房子是租来的，但生活不是</strong></em></p>
-<h2 id="公共区域">公共区域</h2>
-<ol>
-<li>
-<p>私人物品(非厨具)请不要乱摆乱放，可以放到个人房间或者公共区域的柜子/架子里，</p>
-</li>
-<li>
-<p>餐桌，沙发上不要乱堆东西。</p>
-</li>
-</ol>
-<h2 id="厨房">厨房</h2>
-<ol>
-<li>
-<p>做完饭/吃完饭的锅，碗等物品请及时清理，不要堆在水池，不要放在餐桌上，
-也不要偷偷放回柜子。</p>
-</li>
-<li>
-<p>做饭时四溅到锅外的油污请及时清理。</p>
-</li>
-<li>
-<p>微波炉内部请及时清理</p>
-</li>
-<li>
-<p>水池请保持干净，油污需要及时用热水加洗洁精清洗，水槽漏的残留物需要及时倒掉。</p>
-</li>
-</ol>
-<h2 id="卫生打扫">卫生打扫</h2>
-<ol>
-<li>
-<p>扫地拖地每周一次，由两名室友分配完成。</p>
-</li>
-<li>
-<p>卫生间马桶每周用清洁剂清洗一次，保证健康。</p>
-</li>
-<li>
-<p>洗澡淋浴的地漏，如果发现下水速度明显放慢，需要立刻清理。</p>
-</li>
-</ol>
-<h2 id="垃圾处理">垃圾处理</h2>
-<ol>
-<li>
-<p>公共区域有两处放置垃圾的地方，厨房内侧的角落和卫生间里面。
-其余地方不能摆放任何垃圾。如果垃圾满了请及时扔掉，请不要
-继续硬塞垃圾。当然个人生活垃圾也建议及时清理。</p>
-</li>
-<li>
-<p>可回收垃圾，比如纸箱子，纸袋子等，不能摆放在公共区域，需要
-及时扔到可回收垃圾箱。针对较大体积的可回收垃圾，请暂时放在
-凉台处(纸箱需拆开，折叠好)，联系房东帮忙处理。</p>
-</li>
-<li>
-<p>退房以后请带走所有私人物品，如果想丢掉大件行李，请联系房东(
-需要收取一定费用，价钱很合理)。</p>
-</li>
-</ol>
+    <h1 id="面向对象组合与继承">面向对象：组合与继承</h1>
+<h3 id="继承的本质是避免重复">继承的本质是避免重复</h3>
+<p>程序员的宿命就是复制粘贴？ 真的只能这样吗？</p>
+<p>DRY原则/事不过三，三则重构</p>
+<p>继承的本质就是提炼公用的代码，避免重复</p>
+<h3 id="java的继承体系与object中的常用方法">Java的继承体系与Object中的常用方法</h3>
+<p>java是单根继承的</p>
+<p>object的equals是判断两个对象是不是同一个对象。
+很多时候并不满足我们想要的功能，可以通过IDEA的
+自动生成来生成自定义的equals方法。注意Effective Java
+里面说了，覆盖equals方法的同时也要覆盖hashcode方法</p>
+<p>&lsquo;==&lsquo;判断两个对象的地址是否一样，equals判断两个对象包含
+的内容是否一样</p>
+<h3 id="继承中的类结构与初始化顺序">继承中的类结构与初始化顺序</h3>
+<p>子类拥有父类的一切行为和数据</p>
+<p>父类先于子类</p>
+<p>必须拥有匹配的构造器，super关键字</p>
+<h3 id="实例方法的覆盖">实例方法的覆盖</h3>
+<p>继承父类的时候，对某些功能不满意，用自定义的代码来覆盖父类的代码。
+覆盖的方法签名是一样的，只是方法内部实现不同</p>
+<p>永远使用@Override来防止手残，防止覆盖的方法名没有写对</p>
+<h3 id="设计模式实战模板方法">设计模式实战：模板方法</h3>
+<p>一个类定义一些基础的方法，其他的类继承这个类(模板)，任意覆盖
+其中的部分或全部方法，通过这一个模板来衍生出很多不同的功能实现</p>
+<p>Spring启动的过程就用到了模板方法(需要看Spring源码)</p>
+<h3 id="向上向下转型">向上/向下转型</h3>
+<p>一个子类型的对象永远是一个父类型的对象</p>
+<p>instance of 来判断类型，null instance of anything == false</p>
+<h3 id="final关键字与单例模式">final关键字与单例模式</h3>
+<p>final可以用在类，方法，类变量，参数，局部变量上面，代表只能赋值一次。</p>
+<p>当final修饰对象的时候，对象的地址是不能改变的，但是对象本身是可以改变的。</p>
+<p>当final修饰类的时候，类不能被继承。现实中的例子比如String,Integer,Boolean,
+但是hashmap是没有final修饰符的。为什么？ effective java里面写了一个类要么
+就是可以继承，提前设计好，要么就不能继承。final类的好处是杜绝了继承的隐患-
+子类破坏了父类的一些约定，这样父类是确定的</p>
+<p>当final修饰方法的时候，方法不能被覆盖。final方法的好处是没有多态，这样
+虚拟机可以把方法内联了，提高性能，不需要在运行时查找到底是哪个子类对应的方法</p>
+<p>final的好处之一是线程安全性</p>
+<p>单例模式举例，不是非常严格，即使构造器是private，也可以通过反射或者序列化与
+反序列化来创造对象</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">World</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">World</span> <span class="n">SINGLETON_INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">World</span><span class="o">()</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="n">World</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">SINGLETON_INSTANCE</span>
+</span></span><span class="line"><span class="cl">	<span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="nf">World</span><span class="o">()</span> <span class="o">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>课后题讲解(CountingSet)，用例子说明，如果是继承的话，子类的代码非常依赖
+父类的实现，从而破坏了封装性，好的封装是我不需要管实现细节的，但是如果
+用组合的话，就不会有这个问题，组合里面只是调用了成员的方法，不会影响新
+的类里面的计算结果，实现了隔离。这个例子出自effective java，组合由于继承</p>
 
     
 	</div>
@@ -148,7 +143,7 @@
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/renting-obliations/" data-title="Renting Obligations" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/" data-title="Java 组合与继承" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -170,8 +165,8 @@
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/renting-obliations/";
-this.page.identifier = "https://jianqibot.github.io/post/renting-obliations/";
+this.page.url = "https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/";
+this.page.identifier = "https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/";
 };
 (function() { 
 var d = document, s = d.createElement('script');
