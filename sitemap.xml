@@ -2,13 +2,19 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/</loc>
-    <lastmod>2022-05-27T00:39:23+10:00</lastmod>
-  </url><url>
     <loc>https://jianqibot.github.io/</loc>
-    <lastmod>2022-05-27T00:39:23+10:00</lastmod>
+    <lastmod>2022-12-13T23:06:54+11:00</lastmod>
   </url><url>
     <loc>https://jianqibot.github.io/post/</loc>
+    <lastmod>2022-12-13T23:06:54+11:00</lastmod>
+  </url><url>
+    <loc>https://jianqibot.github.io/post/c13-%E5%A4%9A%E6%80%81/</loc>
+    <lastmod>2022-12-13T23:06:54+11:00</lastmod>
+  </url><url>
+    <loc>https://jianqibot.github.io/post/sql/</loc>
+    <lastmod>2022-12-08T23:06:55+11:00</lastmod>
+  </url><url>
+    <loc>https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/</loc>
     <lastmod>2022-05-27T00:39:23+10:00</lastmod>
   </url><url>
     <loc>https://jianqibot.github.io/post/c11-%E5%B0%81%E8%A3%85%E4%B8%8E%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6/</loc>

@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Java Package Manager - Jianqi&#39;s blog</title>
+  <title>SQL - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="Java中的传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，classp">
+  <meta name="description" content="SQL Basic Concepts what is database: a collection of related information relational DB vs non-relational DB: 关系数据库需要SQL来进行操作，SQL是统一的标准 非关系型数据库需要特定的语言来操作，没有统一的标准 surrogate key: primary key">
   
-  <meta itemprop="name" content="Java Package Manager - Jianqi&#39;s blog">
-  <meta itemprop="description" content="Java中的传递性依赖 我们先来看一下JVM的基本工作流程 执行一个类的字节码 如果碰到了新的类，加载它 从 -classpath里面找，classp">
+  <meta itemprop="name" content="SQL - Jianqi&#39;s blog">
+  <meta itemprop="description" content="SQL Basic Concepts what is database: a collection of related information relational DB vs non-relational DB: 关系数据库需要SQL来进行操作，SQL是统一的标准 非关系型数据库需要特定的语言来操作，没有统一的标准 surrogate key: primary key">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/java-package-manager/" title="Java Package Manager" itemprop="url">Java Package Manager</a>
+      <a href="https://jianqibot.github.io/post/sql/" title="SQL" itemprop="url">SQL</a>
   </h1>
   <p class="article-author">By
     
@@ -72,74 +72,80 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2022-01-07 23:16:19 &#43;1100 AEDT" itemprop="datePublished">7071年17月71日</time>
+    <time datetime="2022-12-08 23:06:55 &#43;1100 AEDT" itemprop="datePublished">80812年128月812日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h2 id="java中的传递性依赖">Java中的传递性依赖</h2>
-<p>我们先来看一下JVM的基本工作流程</p>
+    <h1 id="sql">SQL</h1>
+<h2 id="basic-concepts">Basic Concepts</h2>
 <ol>
-<li>执行一个类的字节码</li>
-<li>如果碰到了新的类，加载它</li>
-<li>从 -classpath里面找，classpath包含了很多的文件，用&rsquo;:‘分隔，JVM一个一个的找</li>
-<li>循环以上过程</li>
+<li>
+<p>what is database: a collection of related information</p>
+</li>
+<li>
+<p>relational DB vs non-relational DB:</p>
+<ul>
+<li>关系数据库需要SQL来进行操作，SQL是统一的标准</li>
+<li>非关系型数据库需要特定的语言来操作，没有统一的标准</li>
+</ul>
+</li>
+<li>
+<p>surrogate key: primary key does not have mapping in real world
+natural key: primary key does have mapping in real world</p>
+</li>
 </ol>
-<p>这样会产生一个问题，你依赖的类还依赖了别的类，别的类又依赖了新的别的类，这样一直搜索 并加载下去，这就叫做传递性依赖。</p>
-<h2 id="classpath-hell">Classpath Hell</h2>
-<p>我们知道对于JVM而言，全限定类名(fully qualified class name)是所有类的唯一标识， 如果classpath里面出现了同名的类，
-在classpath的位置靠前的那一个会被加载。设想一下 如果classpath中引入了某个包的不同版本，这有可能导致错误的版本里面
-的类被加载。所以 我们需要进行包管理，包管理的本质就是告诉JVM去哪里找到所需的第三方类库以及解决类名 冲突问题。</p>
-<h2 id="包管理">包管理</h2>
-<h3 id="启蒙时代-aache-ant">启蒙时代 Aache Ant</h3>
-<ul>
-<li>手动下载Jar包，放在一个目录中</li>
-<li>写XML配置，指定编译的源代码目录，依赖的jar包，输出目录等</li>
-<li>缺点很明显: 每个人都要自己造一套轮子，第三方库需要手动下载，没有解决classpath hell问题</li>
-</ul>
-<h3 id="maven时代">Maven时代</h3>
-<h5 id="maven简介">Maven简介</h5>
-<p>首先，Maven远远不只是包管理，更是自动化构建工具！pom。xml就是项目的说明书。 Maven遵循约定优于配置(convention over
-configuration)的原则， 比如生产代码放在src/main，测试代码放在src/test。Maven有两个仓库，中央仓库在远端的服务器上面，
-Maven的中央仓库，按照一定的约定存储包。Maven的本地仓库，默认位于~/.m2，下载的第三方包放在这里缓存。 其次，Maven对所有
-包建立了一层抽象，每个包有groupID, artifactID, version, 按照约定为所有包编号并且 通过这三个标识找唯一的包。注意，Maven
-只下载中央仓库里需要的部分(字节码)，在IDEA里面点击download sources下载源代码。Maven提供语义化版本，比如snapshot(快照版本):
-在开发过程中需要频繁修改， 5.0.0-M1: M是milestone的意思，5.0.0-RC2: RC是release candidate的意思。</p>
-<h5 id="为什么说maven是跨时代的">为什么说Maven是跨时代的</h5>
+<h2 id="sql-basics">SQL Basics</h2>
 <ol>
 <li>
-<p>传递性依赖的自动管理</p>
+<p>SQl is actually a hybrid language, 4 tpes in 1:</p>
 <ul>
-<li>原则: 绝对不允许最终的classpath中出现同名的不同版本的jar包</li>
-<li>解决原则: 就近原则，距离项目最近的胜出(延伸链最短的)。如果距离是一样的，谁的声明靠前谁获胜</li>
+<li>Data Query Language</li>
+<li>Data Defintion Language</li>
+<li>Data Control Language</li>
+<li>Data Manipulation Language</li>
 </ul>
 </li>
 <li>
-<p>依赖冲突的解决
-大部分情况都没问题，如果需要手动解决，在IDEA的右侧Maven里面看dependency(人肉扫描)， 或者在IDEA的terminal里面输入
-mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 在中央仓库找到包，包里面有.pom文件，里面有代码的github
-地址，在github里面通过tag来查看不同版本的源码</p>
+<p>常用的数据类型</p>
 <ul>
-<li>解决方法1: 直接依赖冲突包，在pom.xml里面加入dependency</li>
-<li>解决方法2: 强行告诉Maven我需要哪一个, pom.xml的某个dependency的子树里面写入exclusions，这样依赖 关系就断掉了</li>
-<li>解决方法3: 在IDEA里面下载插件，maven helper。</li>
+<li>INT &ndash; whole numbers</li>
+<li>DECIMAL(M,N) &ndash; decimal number-exact value</li>
+<li>VARCHAR(1) &ndash; string</li>
+<li>BLOB &ndash; binary large object</li>
+<li>DATE &ndash; &lsquo;YYYY-MM-DD&rsquo;</li>
+<li>TIMESTAMP &ndash; &lsquo;YYYY-MM-DD HH:MM:SS&rsquo;</li>
 </ul>
 </li>
 <li>
-<p>依赖的scope
-实现依赖的隔离 重要的是两个(compile, test),compile是在main和test里面都有效，test只在test中有效。provided是编译的时候有效，
-运行的时候无效，一个例子是tomcat，他自己提供servlet的包</p>
-</li>
+<p>CRUD table</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">student_id</span><span class="w"> </span><span class="nb">INT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">name</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">),</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="n">major</span><span class="w"> </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mi">20</span><span class="p">)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DESCRIBE</span><span class="w"> </span><span class="n">student</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DROP</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="n">gpa</span><span class="w"> </span><span class="nb">DECIMAL</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">DROP</span><span class="w"> </span><span class="n">gpa</span><span class="p">;</span><span class="w">
+</span></span></span></code></pre></div></li>
 <li>
-<p>依赖冲突可能会产生的错误信息</p>
-<ul>
-<li>AbstractMethodError</li>
-<li>NoClassDefFoundError</li>
-<li>ClassNotFoundException</li>
-<li>LinkageError</li>
-</ul>
-</li>
+<p>CRUD row</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-sql" data-lang="sql"><span class="line"><span class="cl"><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">student</span><span class="p">(</span><span class="n">student_id</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="k">VALUES</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Kai&#39;</span><span class="p">);</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;biochemistry&#39;</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;biology&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;chemistry&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;tom&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">major</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;biology&#39;</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">student</span><span class="p">.</span><span class="n">major</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">student</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;Mike&#39;</span><span class="p">,</span><span class="s1">&#39;Kobe&#39;</span><span class="p">,</span><span class="s1">&#39;Ray&#39;</span><span class="p">);</span><span class="w">
+</span></span></span></code></pre></div></li>
 </ol>
 
     
@@ -150,7 +156,7 @@ mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/java-package-manager/" data-title="Java Package Manager" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post/sql/" data-title="SQL" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -172,8 +178,8 @@ mvn dependency:tree(展示的是冲突解决之后的)。查看版本的区别: 
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/java-package-manager/";
-this.page.identifier = "https://jianqibot.github.io/post/java-package-manager/";
+this.page.url = "https://jianqibot.github.io/post/sql/";
+this.page.identifier = "https://jianqibot.github.io/post/sql/";
 };
 (function() { 
 var d = document, s = d.createElement('script');

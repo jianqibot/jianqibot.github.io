@@ -6,7 +6,25 @@
     <description>Recent content on Jianqi&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Fri, 27 May 2022 00:39:23 +1000</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 13 Dec 2022 23:06:54 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>多态</title>
+      <link>https://jianqibot.github.io/post/c13-%E5%A4%9A%E6%80%81/</link>
+      <pubDate>Tue, 13 Dec 2022 23:06:54 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/c13-%E5%A4%9A%E6%80%81/</guid>
+      <description>多态 什么是多态 实例方法默认就是多态的 在运行时根据this来决定调用哪个方法 静态方法没有多态 参数静态绑定，接受者动态绑定 多态只对方法的接受者有</description>
+    </item>
+    
+    <item>
+      <title>SQL</title>
+      <link>https://jianqibot.github.io/post/sql/</link>
+      <pubDate>Thu, 08 Dec 2022 23:06:55 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/sql/</guid>
+      <description>SQL Basic Concepts what is database: a collection of related information relational DB vs non-relational DB: 关系数据库需要SQL来进行操作，SQL是统一的标准 非关系型数据库需要特定的语言来操作，没有统一的标准 surrogate key: primary key</description>
+    </item>
+    
     <item>
       <title>Java 组合与继承</title>
       <link>https://jianqibot.github.io/post/c12-%E7%BB%84%E5%90%88%E4%B8%8E%E7%BB%A7%E6%89%BF/</link>
