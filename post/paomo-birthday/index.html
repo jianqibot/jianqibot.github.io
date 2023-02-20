@@ -2,13 +2,13 @@
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
-  <title>Java Collections - Jianqi&#39;s blog</title>
+  <title>Paomo Birthday - Jianqi&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
   
-  <meta name="description" content="集合类的特点 集合只用于存储对象，集合长度是可变的，集合可以存储不同类型的对象并且高效的操作数据。 推荐看一下collection继承体系图 抽象">
+  <meta name="description" content="Pamo&rsquo;s 7th Birthday Paomo is turning 7 in three weeks time. Let us celebrate Paomo&rsquo;s 7th birthday party together. When and Where Date: 11:00 a.m 11/03/2023 (if it is not raining on that day, I will keep this date updated, please keep an eye on it) Address: 314 Goyder St, Narrabundah, ACT Food and Drinks I will do Chinese BBQ at home and here is a list of what I">
   
-  <meta itemprop="name" content="Java Collections - Jianqi&#39;s blog">
-  <meta itemprop="description" content="集合类的特点 集合只用于存储对象，集合长度是可变的，集合可以存储不同类型的对象并且高效的操作数据。 推荐看一下collection继承体系图 抽象">
+  <meta itemprop="name" content="Paomo Birthday - Jianqi&#39;s blog">
+  <meta itemprop="description" content="Pamo&rsquo;s 7th Birthday Paomo is turning 7 in three weeks time. Let us celebrate Paomo&rsquo;s 7th birthday party together. When and Where Date: 11:00 a.m 11/03/2023 (if it is not raining on that day, I will keep this date updated, please keep an eye on it) Address: 314 Goyder St, Narrabundah, ACT Food and Drinks I will do Chinese BBQ at home and here is a list of what I">
   <meta itemprop="image" content="https://jianqibot.github.io/img/author.jpg">
   
   
@@ -64,7 +64,7 @@
 	<article itemprop="articleBody">
     <header class="article-info clearfix">
   <h1 itemprop="name">
-      <a href="https://jianqibot.github.io/post/java-collections/" title="Java Collections" itemprop="url">Java Collections</a>
+      <a href="https://jianqibot.github.io/post/paomo-birthday/" title="Paomo Birthday" itemprop="url">Paomo Birthday</a>
   </h1>
   <p class="article-author">By
     
@@ -72,88 +72,41 @@
     
   </p>
   <p class="article-time">
-    <time datetime="2022-01-07 22:10:34 &#43;1100 AEDT" itemprop="datePublished">7071年17月71日</time>
+    <time datetime="2023-02-20 21:45:15 &#43;1100 AEDT" itemprop="datePublished">20202年220月202日</time>
   </p>
 </header>
 
 	<div class="article-content">
     
-    <h3 id="集合类的特点">集合类的特点</h3>
-<p>集合只用于存储对象，集合长度是可变的，集合可以存储不同类型的对象并且高效的操作数据。
-推荐看一下collection继承体系图</p>
-<h3 id="抽象类的使用">抽象类的使用</h3>
-<p>如果要自己实现一个集合类，去实现那些抽象的接口会非常麻烦，工作量很大。这个时候就
-可以使用抽象类，这些抽象类中给我们提供了许多现成的实现，我们只需要根据自己的需求重写一些方法或者添
-加一些方法就可以实现自己需要的集合类，工作流昂大大降低</p>
-<h3 id="list">List</h3>
+    <h1 id="pamos-7th-birthday">Pamo&rsquo;s 7th Birthday</h1>
+<p>Paomo is turning 7 in three weeks time. Let us celebrate Paomo&rsquo;s 7th birthday party together.</p>
+<h3 id="when-and-where">When and Where</h3>
+<p>Date: 11:00 a.m 11/03/2023
+(if it is not raining on that day, I will keep this date updated, please keep an eye on it)</p>
+<p>Address: 314 Goyder St, Narrabundah, ACT</p>
+<h3 id="food-and-drinks">Food and Drinks</h3>
+<p>I will do Chinese BBQ at home and here is a list of what I usually do:</p>
 <ul>
-<li>ordered/有序的</li>
-<li>几种构造器的不同参数</li>
-<li>int参数引出容量问题，扩容(原先的容量*1.5)，扩容以后原先的就是垃圾了</li>
-<li>list有arraylist和linkedlist</li>
+<li>lamb</li>
+<li>chiken wings</li>
+<li>Oyster</li>
+<li>sauage</li>
+<li>bread</li>
+<li>corn</li>
+<li>potato</li>
+<li>anything you want&hellip; let me know</li>
 </ul>
-<h3 id="set">Set</h3>
+<p>Also I will get some drinks like:</p>
 <ul>
-<li>无序的，但不能包含重复元素</li>
-<li>判断重复，通过equals方法</li>
-<li>如果集合很大，每个新加的元素要跟所有元素判断相等</li>
-<li>hash code，Java世界的第二大重要约定
-<ul>
-<li>相同的对象有相同的hashcode</li>
-<li>假如两个对象的equals返回true，则他们的hash code也一定相同</li>
-<li>假如两个对象不相等，也可能返回相同的hash code</li>
-<li>object 映射成 int</li>
-<li>hash code是单向的映射，不能通过hash code得到object，多对一，而一不能对多</li>
+<li>王老吉(a chinese herbal drink)</li>
+<li>beer</li>
+<li>NO SOFT DRINK</li>
 </ul>
-</li>
-<li>hashSet是无序的，而且随时间可以改变顺序，能保证顺序的是LinkedHashSet(用双向链表)</li>
-<li>比较三种set
-<ul>
-<li>hashset: 顺序完全随机</li>
-<li>linkedhashset: 和插入的顺序一样</li>
-<li>treeset: 有序的，通过comparable接口约定来排序，内部结构是红黑树,
-treeset最大的用处就是排序</li>
-</ul>
-</li>
-</ul>
-<h3 id="map">Map</h3>
-<ul>
-<li>key不能重复，value可以重复</li>
-<li>keySet，和map共用一组数据，keyset的改变会影响map，map的改变也会影响keyset(很重要的坑)</li>
-<li>keyset返回的是set，values返回的是collection(可能有重复)</li>
-<li>entryset, 返回键值对，迭代的时候很有用</li>
-<li>hashmap的key的set就是一个hashset,从源码看到，hashset肚子里面包了一个hashmap</li>
-<li>hashmap扩容</li>
-<li>hashmap线程不安全，(不同步)，
-<ul>
-<li>hashmap的死循环:多线程情况下扩容会造成循环链表</li>
-<li>用concurrentHashMap</li>
-<li>hashmap在java7后的改变，链表变为红黑树</li>
-</ul>
-</li>
-<li>treemap</li>
-</ul>
-<h3 id="collection的其他实现">collection的其他实现</h3>
-<ul>
-<li>queue/deque</li>
-</ul>
-<h3 id="guava">Guava</h3>
-<ul>
-<li>如果碰到collection不能解决的问题，首先尝试在guava中寻找有没有可用的</li>
-<li>常用的有
-<ul>
-<li>lists, sets, maps</li>
-<li>immutableMap, immutableSet</li>
-<li>multiset, multimap</li>
-<li>bimap</li>
-</ul>
-</li>
-</ul>
-<h3 id="java约定">java约定</h3>
-<ul>
-<li>工具在name+s里面，比如collections, sets, lists&hellip;</li>
-</ul>
-<h4 id="推荐资料1httpswwwcnblogscomjing99p7057245html"><a href="https://www.cnblogs.com/jing99/p/7057245.html">推荐资料1</a></h4>
+<h3 id="contact">Contact</h3>
+<p>phone: 0491 181 822 <br>
+email: <a href="mailto:jianqi.zhao.xian@gmail.com">jianqi.zhao.xian@gmail.com</a></p>
+<p>Please tell me how many family members you have(just want to ensure there will be enough food) and any food or drink you want.
+Thank you!</p>
 
     
 	</div>
@@ -163,7 +116,7 @@ treeset最大的用处就是排序</li>
 
 
   <div class="article-share" id="share">
-    <div data-url="https://jianqibot.github.io/post/java-collections/" data-title="Java Collections" data-tsina="" class="share clearfix">
+    <div data-url="https://jianqibot.github.io/post/paomo-birthday/" data-title="Paomo Birthday" data-tsina="" class="share clearfix">
     </div>
   </div>
 </footer>
@@ -185,8 +138,8 @@ treeset最大的用处就是排序</li>
 
 
 var disqus_config = function () {
-this.page.url = "https://jianqibot.github.io/post/java-collections/";
-this.page.identifier = "https://jianqibot.github.io/post/java-collections/";
+this.page.url = "https://jianqibot.github.io/post/paomo-birthday/";
+this.page.identifier = "https://jianqibot.github.io/post/paomo-birthday/";
 };
 (function() { 
 var d = document, s = d.createElement('script');

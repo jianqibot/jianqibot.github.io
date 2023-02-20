@@ -6,7 +6,43 @@
     <description>Recent content on Jianqi&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
-    <lastBuildDate>Tue, 13 Dec 2022 23:06:54 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Feb 2023 21:45:15 +1100</lastBuildDate><atom:link href="https://jianqibot.github.io/feed.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Paomo Birthday</title>
+      <link>https://jianqibot.github.io/post/paomo-birthday/</link>
+      <pubDate>Mon, 20 Feb 2023 21:45:15 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/paomo-birthday/</guid>
+      <description>Pamo&amp;rsquo;s 7th Birthday Paomo is turning 7 in three weeks time. Let us celebrate Paomo&amp;rsquo;s 7th birthday party together. When and Where Date: 11:00 a.m 11/03/2023 (if it is not raining on that day, I will keep this date updated, please keep an eye on it) Address: 314 Goyder St, Narrabundah, ACT Food and Drinks I will do Chinese BBQ at home and here is a list of what I</description>
+    </item>
+    
+    <item>
+      <title>C70 计算机网络 TCP and Socket</title>
+      <link>https://jianqibot.github.io/post/c70-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-tcp-and-socket/</link>
+      <pubDate>Sun, 01 Jan 2023 22:15:40 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/c70-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C-tcp-and-socket/</guid>
+      <description>为什么没有百分之百可靠的通信协议 红军和蓝军相约去打敌人 计算机网络与传统电信网络 传统电信网络: 电路交换网络 计算机网络: 分组交换 虚网络</description>
+    </item>
+    
+    <item>
+      <title>C26 SQL</title>
+      <link>https://jianqibot.github.io/post/c26-sql/</link>
+      <pubDate>Sun, 01 Jan 2023 22:04:16 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/c26-sql/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>接口与抽象类</title>
+      <link>https://jianqibot.github.io/post/c14-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/</link>
+      <pubDate>Sat, 17 Dec 2022 23:07:23 +1100</pubDate>
+      
+      <guid>https://jianqibot.github.io/post/c14-%E6%8E%A5%E5%8F%A3%E4%B8%8E%E6%8A%BD%E8%B1%A1%E7%B1%BB/</guid>
+      <description>接口与抽象类 Abstract约定 在Java的世界里，如果一个类提供了某个功能的骨架实现，则会将这个类命名为AbstractXXX。 比方说Ab</description>
+    </item>
+    
     <item>
       <title>多态</title>
       <link>https://jianqibot.github.io/post/c13-%E5%A4%9A%E6%80%81/</link>
