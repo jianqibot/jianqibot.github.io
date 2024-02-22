@@ -118,19 +118,19 @@
 <p>final的好处之一是线程安全性</p>
 <p>单例模式举例，不是非常严格，即使构造器是private，也可以通过反射或者序列化与
 反序列化来创造对象</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">World</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="kd">static</span> <span class="kd">final</span> <span class="n">World</span> <span class="n">SINGLETON_INSTANCE</span> <span class="o">=</span> <span class="k">new</span> <span class="n">World</span><span class="o">()</span>
-</span></span><span class="line"><span class="cl">	
-</span></span><span class="line"><span class="cl">	<span class="kd">public</span> <span class="kd">static</span> <span class="n">World</span> <span class="nf">getInstance</span><span class="o">()</span> <span class="o">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="n">SINGLETON_INSTANCE</span>
-</span></span><span class="line"><span class="cl">	<span class="o">}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="kd">private</span> <span class="nf">World</span><span class="o">()</span> <span class="o">{}</span>
-</span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="o">}</span>
-</span></span></code></pre></div><p>课后题讲解(CountingSet)，用例子说明，如果是继承的话，子类的代码非常依赖
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-java" data-lang="java"><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">World</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">private</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="n">SINGLETON_INSTANCE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">World</span><span class="p">()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">public</span><span class="w"> </span><span class="kd">static</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="nf">getInstance</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">		</span><span class="k">return</span><span class="w"> </span><span class="n">SINGLETON_INSTANCE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="p">}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">	</span><span class="kd">private</span><span class="w"> </span><span class="nf">World</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="p">}</span><span class="w">
+</span></span></span></code></pre></div><p>课后题讲解(CountingSet)，用例子说明，如果是继承的话，子类的代码非常依赖
 父类的实现，从而破坏了封装性，好的封装是我不需要管实现细节的，但是如果
 用组合的话，就不会有这个问题，组合里面只是调用了成员的方法，不会影响新
 的类里面的计算结果，实现了隔离。这个例子出自effective java，组合由于继承</p>
@@ -156,7 +156,7 @@
 <div id="disqus_thread"></div>
 </section>
 <script>
-  <!-- detect whether Disuqs can load -->
+  
   var xhr = new XMLHttpRequest();
   xhr.open('GET', '//disqus.com/next/config.json?' + new Date().getTime(), true);
   xhr.timeout = 3000; 
@@ -178,7 +178,7 @@ s.setAttribute('data-timestamp', +new Date());
 })();
 }
   xhr.ontimeout = function() {
-  <!-- cannot load Disqus, skip it. -->
+  
   return;
 }
 xhr.send(null);
@@ -295,7 +295,7 @@ xhr.send(null);
     <a href='https://www.facebook.com/coderzh' target="_blank" title="facebook"></a>
     <a href='https://www.linkedin.com/coderzh' target="_blank" title="linkedin"></a>
   </div>
-  <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2023
+  <p class="copyright">Powered by <a href="http://gohugo.io" target="_blank" title="hugo">hugo</a> and Theme by <a href="https://github.com/coderzh/hugo-pacman-theme" target="_blank" title="hugo-pacman-theme">hugo-pacman-theme</a> © 2024
     
     <a href="https://jianqibot.github.io/" title="Jianqi&#39;s blog">Jianqi&#39;s blog</a>
     

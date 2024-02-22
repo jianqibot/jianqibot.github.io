@@ -5,6 +5,7 @@
     <link>https://jianqibot.github.io/tags/</link>
     <description>Recent content in Tags on Jianqi&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>zh-CN</language><atom:link href="https://jianqibot.github.io/tags/feed.xml" rel="self" type="application/rss+xml" />
+    <language>zh-CN</language>
+    <atom:link href="https://jianqibot.github.io/tags/feed.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
